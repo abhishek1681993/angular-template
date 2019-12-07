@@ -1,0 +1,19 @@
+<div class="modal-header">
+    <h4 class="modal-title float-left text-truncate" title="{{options.title | translate}}">{{options.title | translate}}</h4>
+    <span *ngIf="options.info" class="ml-auto mr-1"  title="{{options.info | translate}}">
+        <i class="icon" [ngClass]="iconService.icons.Information"></i>
+    </span>
+    <button title="{{'Close' | translate}}" type="button" class="h6 close float-right" [ngClass] = "iconService.icons.Remove" aria-label="Close" (click)="cancelForm(true)">
+    </button>
+</div>
+<div class="modal-body">
+    <div #dynamicComponent></div>
+</div>
+<div class="modal-footer" *ngIf = "options.actions.length >0">
+    <span class="mr-auto w-50" *ngIf="options.hasFooterLegend">
+        <div id="footerLegendId" [innerHTML]="footerLegend"></div>
+    </span>
+    <span *ngFor="let item of options.actions | reverse">
+    <button [disabled]='item.disabled !== undefined ? item.disabled : false' type="button" [ngClass]="item.css" (click)="handleAction(item)"> {{ item.name | translate}} </button>
+    </span>
+</div>
